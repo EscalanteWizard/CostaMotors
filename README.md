@@ -2,7 +2,6 @@
 Costa Motors, empresa que desarrolla vehículos impulsados por hidrógeno, la empresa nace de la combinación del amor de sus creadores por los vehículos y e medio ambiente, ya que los vehículos diseñados por Costa Motors son todos impulsados por energías limpias y los diseños y nombres de sus vehículos están inspirados en la fauna Costarricense.
 Para consultar los enlaces de documentación, diagramas UML y otra información reelevante, consulte los enlaces en el archivo EnlacesDeInteres.md
 
-#Enlaces de interés\n
 Enlace a la documentación online del proyecto: https://docs.google.com/document/d/1y7A2-j_UEmVVMl9DIO0Y-17B5kRsCbC1of41EK-oCmI/edit?usp=sharing
 
 Enlace al repositorio de GitHub del proyecto: https://github.com/EscalanteWizard/CostaMotors.git
