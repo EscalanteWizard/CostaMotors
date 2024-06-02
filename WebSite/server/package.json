@@ -9,9 +9,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mysql": "^2.18.1",
-    "mysql2": "^3.10.0"
+    "mysql2": "^3.10.0",
+    "react-bootstrap": "^2.10.2"
   }
 }
