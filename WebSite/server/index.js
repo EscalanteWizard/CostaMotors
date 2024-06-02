@@ -45,7 +45,7 @@ app.post("/saveEmpleado", (req, res) => {
         return res.status(400).send("Todos los campos son obligatorios");
     }
 
-    const sql = 'CALL insertar_empleado(?, ?, ?, ?, ?)';
+    const sql = 'CALL insertarEmpleado(?, ?, ?, ?, ?)';
     const params = [nombre, edad, pais, cargo, experiencia];
 
     db.query(sql, params, (err, result) => {
@@ -68,6 +68,27 @@ app.get("/consultarEmpleados",(req,res)=>{
             return res.status(500).send("Error al consultar los empleados");
         } else {
             res.send(result);
+        }
+    });
+});
+
+//Metodo para llamar al procedimiento almacenado para actualizar la infomación de un empleado
+app.put("/actualizarEmpleado", (req, res) => {
+    const { id, nombre, edad, pais, cargo, experiencia } = req.body;
+
+    if (!id || !nombre || !edad || !pais || !cargo || !experiencia) {
+        return res.status(400).send("Todos los campos son obligatorios");
+    }
+
+    const sql = 'CALL actualizarEmpleado(?, ?, ?, ?, ?, ?)';
+    const params = [id, nombre, edad, pais, cargo, experiencia];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error("Error al ejecutar el procedimiento almacenado:", err);
+            return res.status(500).send("Error al actualizar la infomación el empleado");
+        } else {
+            res.send("Empleado actualizado con éxito!!");
         }
     });
 });

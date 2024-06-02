@@ -7,14 +7,30 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   //Constantes para manejar los estados de los input en el formulario
+  const [id,setId] = useState();
   const [nombre,setNombre] = useState("");
-  const [edad,setEdad] = useState(0);
+  const [edad,setEdad] = useState();
   const [pais,setPais] = useState("");
   const [cargo,setCargo] = useState("");
-  const [experiencia,setExperiencia] = useState("");
+  const [experiencia,setExperiencia] = useState();
+
+  //Constante para manejar los estados cuando se realice una edicion de los atributos del empleado
+  const [editar,setEditar] = useState(false);
 
   //Constante para guardar la lista de los empleados al realizar la consulta de la tabla de empleados de la bd
   const [empleadosList,setEmpleados]=useState([]);
+
+  //Funcion para editar los atributos del empleado
+  const editarEmpleado = (empleado)=>{
+    setEditar(true);
+
+    setId(empleado.id);
+    setNombre(empleado.nombre);
+    setEdad(empleado.edad);
+    setPais(empleado.pais);
+    setCargo(empleado.cargo);
+    setExperiencia(empleado.experiencia);
+  }
 
   //Metodo del frontEnd para enviar al backEnd una peticion para guardar un nuevo empleado en la base de datos
   const addEmpleado = ()=>{
@@ -36,6 +52,30 @@ function App() {
     }).catch((error) => {
       console.error("Error al registrar el empleado:", error);
       alert("Error al registrar el empleado");
+    });
+  }
+
+  //Metodo del frontEnd para enviar al backEnd una peticion para actualizar la información de un empleado en la base de datos
+  const updateEmpleado = ()=>{
+    // Verificar si algún campo está vacío
+    if (!id || !nombre || !edad || !pais || !cargo || !experiencia) {
+      alert("Todos los campos son obligatorios");
+      getEmpleados();
+      return; // Salir de la función si algún campo está vacío
+  }
+    Axios.put("http://localhost:3007/actualizarEmpleado",{
+      id:id,
+      nombre:nombre,
+      edad:edad,
+      pais:pais,
+      cargo:cargo,
+      experiencia:experiencia
+    }).then(()=>{
+      getEmpleados();
+      alert("Empleado actualizado con éxito!");
+    }).catch((error) => {
+      console.error("Error al actualizar el empleado:", error);
+      alert("Error al actualizar el empleado");
     });
   }
 
@@ -78,7 +118,7 @@ function App() {
            * En este se muestran los elementos para ingresar el nombre de empleado*/}
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Nombre:</span>
-            <input type="text" 
+            <input type="text" value={nombre} 
               onChange={(event)=>{
               setNombre(event.target.value);
             }}
@@ -89,7 +129,7 @@ function App() {
            * En este se muestran los elementos para ingresar a edad del empleado*/}
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Edad:</span>
-            <input type="number" 
+            <input type="number" value={edad} 
               onChange={(event)=>{
               setEdad(event.target.value);
             }}
@@ -100,7 +140,7 @@ function App() {
            * En este se muestran los elementos para ingresar el país del empleado*/}
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">País:</span>
-            <input type="text" 
+            <input type="text" value={pais} 
               onChange={(event)=>{
               setPais(event.target.value);
             }}
@@ -111,7 +151,7 @@ function App() {
            * En este se muestran los elementos para ingresar el cargo del empleado*/}
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Cargo:</span>
-            <input type="text" 
+            <input type="text" value={cargo}
               onChange={(event)=>{
               setCargo(event.target.value);
             }}
@@ -122,7 +162,7 @@ function App() {
            * En este se muestran los elementos para ingresar la experiencia del empleado*/}
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Experiencia:</span>
-            <input type="number" 
+            <input type="number" value={experiencia}
               onChange={(event)=>{
               setExperiencia(event.target.value);
             }}
@@ -131,9 +171,17 @@ function App() {
         </div>
 
         <div className="card-footer text-muted">
-          {/* Boton para registrar */}
-          <button className='btn btn-success' onClick={addEmpleado}>Registrar</button>
+          {/**Condicion para verficar que se está editando */}
+          {
+            editar?
+              <div>
+                <button className='btn btn-warning m-2' onClick={updateEmpleado}>Actualizar</button> {/**Boton para registrar los cambios al editar*/}
+                <button className='btn btn-danger m-2' onClick={addEmpleado}>Cancelar</button> {/**Boton para registrar los cambios al editar*/}
+              </div>
+            :<button className='btn btn-success' onClick={addEmpleado}>Registrar</button> //Boton para guar registrar en caso que no se esté editando
+          }
         </div>
+
       </div>
       {/**Tabla para mostrar los resultados de los Empleados consultados */}
       <table className="table table-striped">
@@ -146,6 +194,8 @@ function App() {
             <th scope="col">Pais</th>
             <th scope="col">Cargo</th>
             <th scope="col">Experiencia</th>
+            {/** Uno extra para colocar los botones de acciones */}
+            <th scope="col">Acciones</th>  
           </tr>
         </thead>
         <tbody>
@@ -158,6 +208,25 @@ function App() {
                     <td>{empleado.pais}</td> 
                     <td>{empleado.cargo}</td> 
                     <td>{empleado.experiencia}</td> 
+                    <td>
+                    <div className="btn-group" role="group" aria-label="Basic example">
+
+                      {/** Botón para invocar la fucionalidad para editar */}
+                      <button type="button" 
+                        onClick={()=> {
+                          editarEmpleado(empleado);
+                        }}
+                      className="btn btn-info">Editar</button>
+
+                      {/** Boton para invocar la funcionalidad para eliminar */}
+                      <button type="button" 
+                        onClick={()=> {
+                            
+                        }}
+                      className="btn btn-danger">Eliminar</button>
+
+                    </div>
+                    </td>
                   </tr>
             })
           }
