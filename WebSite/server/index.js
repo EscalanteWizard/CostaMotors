@@ -37,6 +37,8 @@ app.get('/testConnection', (req, res) => {
     });
 });
 
+/**Métodos del api para el módulo de usuarios */
+
 //Metodo para llamar al procedimiento almacenado para agregar un nuevo empleado
 app.post("/saveEmpleado", (req, res) => {
     const { nombre, apellidos, correo, telefono, experiencia, usuario, contrasenia } = req.body;
@@ -106,6 +108,81 @@ app.delete("/eliminarEmpleado/:id", (req, res) => {
             return res.status(500).send("Error al borrar la infomación el empleado");
         } else {
             res.send("Empleado eliminado con éxito!!");
+        }
+    });
+});
+
+/**Métodos del api para el módulo de Disenios */
+
+//Metodo para llamar al procedimiento almacenado para agregar un nuevo disenio
+app.post("/saveDisenio", (req, res) => {
+    const {nombre, transmision, materialAsientos, motor, vidrios, espejos, sensoresDelanteros, sensoresTraseros, sensoresLaterales, camara, tableroMando, impulso, tapizado, sistemaSonido} = req.body;
+
+    if (!nombre || !transmision || !materialAsientos || !motor || !vidrios || !espejos || !sensoresDelanteros || !sensoresTraseros || !sensoresLaterales || !camara || !tableroMando || !impulso || !tapizado || !sistemaSonido) {
+        return res.status(400).send("Todos los campos son obligatorios");
+    }
+
+    const sql = 'CALL insertarDisenio(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const params = [nombre, transmision, materialAsientos, motor, vidrios, espejos, sensoresDelanteros, sensoresTraseros, sensoresLaterales, camara, tableroMando, impulso, tapizado, sistemaSonido];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error("Error al ejecutar el procedimiento almacenado:", err);
+            return res.status(500).send("Error al registrar el disenio");
+        } else {
+            res.send("Disenio registrado con éxito!!");
+        }
+    });
+});
+
+//Metodo para consultar todos los disenios de la base de datos a través del procedimiento almacenado
+app.get("/consultarDisenios",(req,res)=>{
+    const sql = 'CALL consultarDisenios()';
+
+    db.query(sql,(err, result) => {
+        if (err) {
+            console.error("Error al ejecutar el procedimiento almacenado:", err);
+            return res.status(500).send("Error al consultar los disenios");
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+//Metodo para llamar al procedimiento almacenado para actualizar la infomación de un disenio
+app.put("/actualizarDisenio", (req, res) => {
+    const {nombre, transmision, materialAsientos, motor, vidrios, espejos, sensoresDelanteros, sensoresTraseros, sensoresLaterales, camara, tableroMando, impulso, tapizado, sistemaSonido} = req.body;
+
+    if (!nombre || !transmision || !materialAsientos || !motor || !vidrios || !espejos || !sensoresDelanteros || !sensoresTraseros || !sensoresLaterales || !camara || !tableroMando || !impulso || !tapizado || !sistemaSonido) {
+        return res.status(400).send("Todos los campos son obligatorios");
+    }
+
+    const sql = 'CALL insertarDisenio(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const params = [nombre, transmision, materialAsientos, motor, vidrios, espejos, sensoresDelanteros, sensoresTraseros, sensoresLaterales, camara, tableroMando, impulso, tapizado, sistemaSonido];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error("Error al ejecutar el procedimiento almacenado:", err);
+            return res.status(500).send("Error al actualizar la infomación del disenio");
+        } else {
+            res.send("Disenio actualizado con éxito!!");
+        }
+    });
+});
+
+//Metodo del backEnd para llamar al procedimiento almacenado para borrar un disenio de la tabla de disenios por medio del id
+app.delete("/eliminarDisenio/:id", (req, res) => {
+    const {id}=req.params;
+
+    const sql = 'CALL eliminarDisenio(?)';
+    const params = [id];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error("Error al ejecutar el procedimiento almacenado:", err);
+            return res.status(500).send("Error al borrar la infomación del disenio");
+        } else {
+            res.send("Disenio eliminado con éxito!!");
         }
     });
 });

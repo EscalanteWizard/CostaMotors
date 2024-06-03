@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Módulos</h1>
+      <h1>Costa Motors</h1>
       <nav>
         <ul>
           <li>
@@ -17,7 +17,7 @@ function App() {
           </li>
           <li>
             <Link to="/disenios" className="btn">
-              Módulo de Diseños (Process)
+              Módulo de Diseños
             </Link>
           </li>
           <li>

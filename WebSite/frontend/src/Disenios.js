@@ -174,6 +174,18 @@ function Disenios() {
                 setTransmision(event.target.value);
               }}
               className="form-control" placeholder="Seleccione la transmision" aria-label="Transmision" aria-describedby="basic-addon1" />
+              <span className="input-group-text" id="basic-addon1">Motor:</span>
+            <input type="text" value={motor}
+              onChange={(event) => {
+                setMotor(event.target.value);
+              }}
+              className="form-control" placeholder="Ingrese el motor" aria-label="Motor" aria-describedby="basic-addon1" />
+              <span className="input-group-text" id="basic-addon1">Tipo de conbustible: </span>
+            <input type="text" value={impulso}
+              onChange={(event) => {
+                setImpulso(event.target.value);
+              }}
+              className="form-control" placeholder="Seleccione el tipo de combustible" aria-label="Combustible" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Material de asientos:</span>
@@ -182,48 +194,49 @@ function Disenios() {
                 setMaterialAsientos(event.target.value);
               }}
               className="form-control" placeholder="Seleccion el material de los Asientos" aria-label="Material asientos" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Motor:</span>
-            <input type="text" value={motor}
+              <span className="input-group-text" id="basic-addon1">Tapizado:</span>
+            <input type="text" value={tapizado}
               onChange={(event) => {
-                setMotor(event.target.value);
+                setTapizado(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el motor" aria-label="Motor" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Seleccion el tapizado" aria-label="Tapizado" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Vidrios:</span>
-            <input type="number" value={vidrios}
+              <input type="text" value={vidrios}
+                onChange={(event) => {
+                  setVidrios(event.target.value);
+                }}
+                className="form-control" placeholder="Seleccione el tipo de  vidrios" aria-label="Vidrios" aria-describedby="basic-addon1" />
+                <span className="input-group-text" id="basic-addon1">Espejos:</span>
+              <input type="text" value={espejos}
+                onChange={(event) => {
+                  setEspejos(event.target.value);
+                }}
+                className="form-control" placeholder="Seleccione los espejos" aria-label="Espejos" aria-describedby="basic-addon1" />
+                <span className="input-group-text" id="basic-addon1">Cámara: </span>
+            <input type="text" value={camara}
               onChange={(event) => {
-                setVidrios(event.target.value);
+                setCamara(event.target.value);
               }}
-              className="form-control" placeholder="Seleccione el tipo de  vidrios" aria-label="Vidrios" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Desea colocar camara de retroceso o 360?" aria-label="Camara de retroceso" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Espejos:</span>
-            <input type="text" value={espejos}
-              onChange={(event) => {
-                setEspejos(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccione los espejos" aria-label="Espejos" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
+            
             <span className="input-group-text" id="basic-addon1">Sensores delanteros</span>
             <input type="text" value={sensoresDelanteros}
               onChange={(event) => {
                 setSensoresDelanteros(event.target.value);
               }}
               className="form-control" placeholder="Desea colocar sensores delanteros?" aria-label="SensoresDelanteros" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
+            
             <span className="input-group-text" id="basic-addon1">Sensores traseros</span>
             <input type="text" value={sensoresTraseros}
               onChange={(event) => {
                 setSensoresTraseros(event.target.value);
               }}
               className="form-control" placeholder="Desea colocar sensores traseros?" aria-label="SensoresTraseros" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
+
             <span className="input-group-text" id="basic-addon1">Sensores laterales</span>
             <input type="text" value={sensoresLaterales}
               onChange={(event) => {
@@ -232,17 +245,19 @@ function Disenios() {
               className="form-control" placeholder="Desea colocar sensores laterales?" aria-label="SensoresLaterales" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Cámara: </span>
-            <input type="text" value={camara}
+            <span className="input-group-text" id="basic-addon1">Tablero de mando: </span>
+            <input type="text" value={tableroMando}
               onChange={(event) => {
-                setCamara(event.target.value);
+                setTableroMando(event.target.value);
               }}
-              className="form-control" placeholder="Desea colocar camara de retroceso o 360?" aria-label="Camara de retroceso" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Seleccione el tipo de tablero de mando" aria-label="Tablero de mando" aria-describedby="basic-addon1" />
+              <span className="input-group-text" id="basic-addon1">Sistema de sonido: </span>
+            <input type="text" value={sistemaSonido}
+              onChange={(event) => {
+                setSistemaSonido(event.target.value);
+              }}
+              className="form-control" placeholder="Seleccione el tipo de sistema de sonido" aria-label="Sistema de sonido" aria-describedby="basic-addon1" />
           </div>
-    setTableroMando(disenio.tableroMando);
-    setImpulso(disenio.impulso);
-    setTapizado(disenio.tapizado);
-    setSistemaSonido(disenio.sistemaSonido)
         </div>
         <div className="card-footer text-muted">
           {editar ?
@@ -259,12 +274,19 @@ function Disenios() {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Correo</th>
-            <th scope="col">Teléfono</th>
-            <th scope="col">Experiencia</th>
-            <th scope="col">Usuario</th>
-            <th scope="col">Contraseña</th>
+            <th scope="col">Transmisión</th>
+            <th scope="col">Motor</th>
+            <th scope="col">Combustible</th>
+            <th scope="col">Asientos</th>
+            <th scope="col">Tapizado</th>
+            <th scope="col">Vidrios</th>
+            <th scope="col">Espejos</th>
+            <th scope="col">Camara</th>
+            <th scope="col">Sensores delanteros</th>
+            <th scope="col">Sensores traseros</th>
+            <th scope="col">Sensores laterales</th>
+            <th scope="col">Tablero</th>
+            <th scope="col">Sonido</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -274,11 +296,18 @@ function Disenios() {
               <th>{disenio.id}</th>
               <td>{disenio.nombre}</td>
               <td>{disenio.transmision}</td>
-              <td>{disenio.materialAsientos}</td>
               <td>{disenio.motor}</td>
+              <td>{disenio.impulso}</td>
+              <td>{disenio.materialAsientos}</td>
+              <td>{disenio.tapizado}</td>
               <td>{disenio.vidrios}</td>
               <td>{disenio.espejos}</td>
+              <td>{disenio.camara}</td>
               <td>{disenio.sensoresDelanteros}</td>
+              <td>{disenio.sensoresTraseros}</td>
+              <td>{disenio.sensoresLaterales}</td>
+              <td>{disenio.tableroMando}</td>
+              <td>{disenio.sistemaSonido}</td>
               <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                   <button type="button"
