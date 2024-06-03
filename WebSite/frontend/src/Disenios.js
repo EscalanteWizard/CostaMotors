@@ -6,112 +6,148 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Disenios() {
   const [id, setId] = useState();
   const [nombre, setNombre] = useState("");
-  const [apellidos, setApellidos] = useState();
-  const [correo, setCorreo] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [experiencia, setExperiencia] = useState();
-  const [usuario, setUsuario] = useState("");
-  const [contrasenia, setContrasenia] = useState("");
-  const [editar, setEditar] = useState(false);
-  const [empleadosList, setEmpleados] = useState([]);
+  const [transmision, setTransmision] = useState();
+  const [materialAsientos, setMaterialAsientos] = useState("");
+  const [motor, setMotor] = useState("");
+  const [vidrios, setVidrios] = useState();
+  const [espejos, setEspejos] = useState("");
+  const [sensoresDelanteros, setSensoresDelanteros] = useState("");
+  const [sensoresTraseros, setSensoresTraseros] = useState("");
+  const [sensoresLaterales, setSensoresLaterales] = useState("");
+  const [camara, setCamara] = useState("");
+  const [tableroMando, setTableroMando] = useState("");
+  const [impulso, setImpulso] = useState("");
+  const [tapizado, setTapizado] = useState("");
+  const [sistemaSonido, setSistemaSonido] = useState("");
 
-  const editarEmpleado = (empleado) => {
+  const [editar, setEditar] = useState(false);
+  const [diseniosList, setDisenios] = useState([]);
+
+  const editarDisenio = (disenio) => {
     setEditar(true);
-    setId(empleado.id);
-    setNombre(empleado.nombre);
-    setApellidos(empleado.apellidos);
-    setCorreo(empleado.correo);
-    setTelefono(empleado.telefono);
-    setExperiencia(empleado.experiencia);
-    setUsuario(empleado.usuario);
-    setContrasenia(empleado.contrasenia);
+    setId(disenio.id);
+    setNombre(disenio.nombre);
+    setTransmision(disenio.transmision);
+    setMaterialAsientos(disenio.materialAsientos);
+    setMotor(disenio.motor);
+    setVidrios(disenio.vidrios);
+    setEspejos(disenio.espejos);
+    setSensoresDelanteros(disenio.sensoresDelanteros);
+    setSensoresTraseros(disenio.sensoresTraseros);
+    setSensoresLaterales(disenio.sensoresLaterales);
+    setCamara(disenio.camara);
+    setTableroMando(disenio.tableroMando);
+    setImpulso(disenio.impulso);
+    setTapizado(disenio.tapizado);
+    setSistemaSonido(disenio.sistemaSonido)
   };
 
-  const limpiarCamposEmpleado = () => {
+  const limpiarCamposDisenio = () => {
     setId("");
     setNombre("");
-    setApellidos("");
-    setCorreo("");
-    setTelefono("");
-    setExperiencia("");
-    setUsuario("");
-    setContrasenia("");
+    setTransmision("");
+    setMaterialAsientos("");
+    setMotor("");
+    setVidrios("");
+    setEspejos("");
+    setSensoresDelanteros("");
+    setSensoresTraseros("");
+    setSensoresLaterales("");
+    setCamara("");
+    setTableroMando("");
+    setImpulso("");
+    setTapizado("");
+    setSistemaSonido("")
     setEditar(false);
   };
 
-  const addEmpleado = () => {
-    if (!nombre || !apellidos || !correo || !telefono || !experiencia || !usuario || !contrasenia) {
+  const addDisenio = () => {
+    if (!nombre || !transmision || !materialAsientos || !motor || !vidrios || !espejos || !sensoresDelanteros || !sensoresTraseros || !sensoresLaterales || !camara || !tableroMando || !impulso || !tapizado || !sistemaSonido) {
       alert("Todos los campos son obligatorios");
-      getEmpleados();
+      getDisenios();
       return;
     }
-    Axios.post("http://localhost:3007/saveEmpleado", {
+    Axios.post("http://localhost:3007/saveDisenio", {
       nombre: nombre,
-      apellidos: apellidos,
-      correo: correo,
-      telefono: telefono,
-      experiencia: experiencia,
-      usuario: usuario,
-      contrasenia: contrasenia
+      transmision: transmision,
+      materialAsientos: materialAsientos,
+      motor: motor,
+      vidrios: vidrios,
+      espejos: espejos,
+      sensoresDelanteros: sensoresDelanteros,
+      sensoresTraseros: sensoresTraseros,
+      sensoresLaterales: sensoresLaterales,
+      camara: camara,
+      tableroMando: tableroMando,
+      impulso: impulso,
+      tapizado: tapizado,
+      sistemaSonido: sistemaSonido
     }).then(() => {
-      limpiarCamposEmpleado();
-      getEmpleados();
-      alert("Empleado registrado con éxito!");
+      limpiarCamposDisenio();
+      getDisenios();
+      alert("Diseño registrado con éxito!");
     }).catch((error) => {
-      console.error("Error al registrar el empleado:", error);
-      alert("Error al registrar el empleado");
+      console.error("Error al registrar el disenio:", error);
+      alert("Error al registrar el disenio");
     });
   };
 
-  const updateEmpleado = () => {
-    if (!id || !nombre || !apellidos || !correo || !telefono || !experiencia || !usuario || !contrasenia) {
+  const upDateDisenio = () => {
+    if (!nombre || !transmision || !materialAsientos || !motor || !vidrios || !espejos || !sensoresDelanteros || !sensoresTraseros || !sensoresLaterales || !camara || !tableroMando || !impulso || !tapizado || !sistemaSonido) {
       alert("Todos los campos son obligatorios");
-      getEmpleados();
+      getDisenios();
       return;
     }
-    Axios.put("http://localhost:3007/actualizarEmpleado", {
+    Axios.put("http://localhost:3007/actualizarDisenio", {
       id: id,
       nombre: nombre,
-      apellidos: apellidos,
-      correo: correo,
-      telefono: telefono,
-      experiencia: experiencia,
-      usuario: usuario,
-      contrasenia: contrasenia
+      transmision: transmision,
+      materialAsientos: materialAsientos,
+      motor: motor,
+      vidrios: vidrios,
+      espejos: espejos,
+      sensoresDelanteros: sensoresDelanteros,
+      sensoresTraseros: sensoresTraseros,
+      sensoresLaterales: sensoresLaterales,
+      camara: camara,
+      tableroMando: tableroMando,
+      impulso: impulso,
+      tapizado: tapizado,
+      sistemaSonido: sistemaSonido
     }).then(() => {
-      getEmpleados();
-      alert("Empleado actualizado con éxito!");
-      limpiarCamposEmpleado();
+      getDisenios();
+      alert("Diseño actualizado con éxito!");
+      limpiarCamposDisenio();
     }).catch((error) => {
-      console.error("Error al actualizar el empleado:", error);
-      alert("Error al actualizar el empleado");
+      console.error("Error al actualizar el disenio:", error);
+      alert("Error al actualizar el disenio");
     });
   };
 
-  const eliminarEmpleado = (id) => {
-    if (window.confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
-      Axios.delete(`http://localhost:3007/eliminarEmpleado/${id}`).then(() => {
-        getEmpleados();
-        alert("Empleado eliminado con éxito!");
-        limpiarCamposEmpleado();
+  const eliminarDisenio = (id) => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este disenio?")) {
+      Axios.delete(`http://localhost:3007/eliminarDisenio/${id}`).then(() => {
+        getDisenios();
+        alert("Disenio eliminado con éxito!");
+        limpiarCamposDisenio();
       }).catch((error) => {
-        console.error("Error al eliminar el empleado:", error);
-        alert("Error al eliminar el empleado");
+        console.error("Error al eliminar el disenio:", error);
+        alert("Error al eliminar el disenio");
       });
     }
   };
 
-  const getEmpleados = () => {
-    Axios.get("http://localhost:3007/consultarEmpleados")
+  const getDisenios = () => {
+    Axios.get("http://localhost:3007/consultarDisenios")
       .then((response) => {
         if (Array.isArray(response.data) && response.data.length > 0) {
-          setEmpleados(response.data[0]);
-          alert("Lista de empleados recuperada con éxito!");
+          setDisenios(response.data[0]);
+          alert("Lista de diseños recuperada con éxito!");
         } else {
-          alert("No se encontraron empleados.");
+          alert("No se encontraron Diseños.");
         }
       }).catch((error) => {
-        console.error("Error al recuperar la lista de empleados: ", error);
+        console.error("Error al recuperar la lista de Diseños: ", error);
         alert(JSON.parse(JSON.stringify(error)).message === "Network Error" ? "Intente más tarde" : JSON.stringify(error));
       });
   };
@@ -120,7 +156,7 @@ function Disenios() {
     <div className="container">
       <div className="card text-center">
         <div className="card-header">
-          Gestión de empleados
+          Gestión de Diseños
         </div>
         <div className="card-body">
           <div className="input-group mb-3">
@@ -129,64 +165,92 @@ function Disenios() {
               onChange={(event) => {
                 setNombre(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese un nombre" aria-label="Username" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese un nombre" aria-label="Nombre de disenio" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Apellidos:</span>
-            <input type="text" value={apellidos}
+            <span className="input-group-text" id="basic-addon1">Transmision:</span>
+            <input type="text" value={transmision}
               onChange={(event) => {
-                setApellidos(event.target.value);
+                setTransmision(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese la apellidos" aria-label="Age" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Seleccione la transmision" aria-label="Transmision" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Correo:</span>
-            <input type="text" value={correo}
+            <span className="input-group-text" id="basic-addon1">Material de asientos:</span>
+            <input type="text" value={materialAsientos}
               onChange={(event) => {
-                setCorreo(event.target.value);
+                setMaterialAsientos(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el correo" aria-label="Country" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Seleccion el material de los Asientos" aria-label="Material asientos" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Telefono:</span>
-            <input type="text" value={telefono}
+            <span className="input-group-text" id="basic-addon1">Motor:</span>
+            <input type="text" value={motor}
               onChange={(event) => {
-                setTelefono(event.target.value);
+                setMotor(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el telefono" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese el motor" aria-label="Motor" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Experiencia:</span>
-            <input type="number" value={experiencia}
+            <span className="input-group-text" id="basic-addon1">Vidrios:</span>
+            <input type="number" value={vidrios}
               onChange={(event) => {
-                setExperiencia(event.target.value);
+                setVidrios(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese la experiencia" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Seleccione el tipo de  vidrios" aria-label="Vidrios" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Usuario:</span>
-            <input type="text" value={usuario}
+            <span className="input-group-text" id="basic-addon1">Espejos:</span>
+            <input type="text" value={espejos}
               onChange={(event) => {
-                setUsuario(event.target.value);
+                setEspejos(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el usuario" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Seleccione los espejos" aria-label="Espejos" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Contrasenia:</span>
-            <input type="text" value={contrasenia}
+            <span className="input-group-text" id="basic-addon1">Sensores delanteros</span>
+            <input type="text" value={sensoresDelanteros}
               onChange={(event) => {
-                setContrasenia(event.target.value);
+                setSensoresDelanteros(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese la Contrasenia" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Desea colocar sensores delanteros?" aria-label="SensoresDelanteros" aria-describedby="basic-addon1" />
           </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">Sensores traseros</span>
+            <input type="text" value={sensoresTraseros}
+              onChange={(event) => {
+                setSensoresTraseros(event.target.value);
+              }}
+              className="form-control" placeholder="Desea colocar sensores traseros?" aria-label="SensoresTraseros" aria-describedby="basic-addon1" />
+          </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">Sensores laterales</span>
+            <input type="text" value={sensoresLaterales}
+              onChange={(event) => {
+                setSensoresLaterales(event.target.value);
+              }}
+              className="form-control" placeholder="Desea colocar sensores laterales?" aria-label="SensoresLaterales" aria-describedby="basic-addon1" />
+          </div>
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">Cámara: </span>
+            <input type="text" value={camara}
+              onChange={(event) => {
+                setCamara(event.target.value);
+              }}
+              className="form-control" placeholder="Desea colocar camara de retroceso o 360?" aria-label="Camara de retroceso" aria-describedby="basic-addon1" />
+          </div>
+    setTableroMando(disenio.tableroMando);
+    setImpulso(disenio.impulso);
+    setTapizado(disenio.tapizado);
+    setSistemaSonido(disenio.sistemaSonido)
         </div>
         <div className="card-footer text-muted">
           {editar ?
             <div>
-              <button className='btn btn-warning m-2' onClick={updateEmpleado}>Actualizar</button>
-              <button className='btn btn-danger m-2' onClick={limpiarCamposEmpleado}>Cancelar</button>
+              <button className='btn btn-warning m-2' onClick={upDateDisenio}>Actualizar</button>
+              <button className='btn btn-danger m-2' onClick={limpiarCamposDisenio}>Cancelar</button>
             </div>
-            : <button className='btn btn-success' onClick={addEmpleado}>Registrar</button>
+            : <button className='btn btn-success' onClick={addDisenio}>Registrar</button>
           }
         </div>
       </div>
@@ -205,26 +269,26 @@ function Disenios() {
           </tr>
         </thead>
         <tbody>
-          {empleadosList.map((empleado, index) => {
-            return <tr key={empleado.id}>
-              <th>{empleado.id}</th>
-              <td>{empleado.nombre}</td>
-              <td>{empleado.apellidos}</td>
-              <td>{empleado.correo}</td>
-              <td>{empleado.telefono}</td>
-              <td>{empleado.experiencia}</td>
-              <td>{empleado.usuario}</td>
-              <td>{empleado.contrasenia}</td>
+          {diseniosList.map((disenio, index) => {
+            return <tr key={disenio.id}>
+              <th>{disenio.id}</th>
+              <td>{disenio.nombre}</td>
+              <td>{disenio.transmision}</td>
+              <td>{disenio.materialAsientos}</td>
+              <td>{disenio.motor}</td>
+              <td>{disenio.vidrios}</td>
+              <td>{disenio.espejos}</td>
+              <td>{disenio.sensoresDelanteros}</td>
               <td>
                 <div className="btn-group" role="group" aria-label="Basic example">
                   <button type="button"
                     onClick={() => {
-                      editarEmpleado(empleado);
+                      editarDisenio(disenio);
                     }}
                     className="btn btn-info">Editar</button>
                   <button type="button"
                     onClick={() => {
-                      eliminarEmpleado(empleado.id);
+                      eliminarDisenio(disenio.id);
                     }}
                     className="btn btn-danger">Eliminar</button>
                 </div>

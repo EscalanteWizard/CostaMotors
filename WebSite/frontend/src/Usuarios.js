@@ -145,7 +145,7 @@ function Usuarios() {
               onChange={(event) => {
                 setCorreo(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el correo" aria-label="Country" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese el correo" aria-label="Mail" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Telefono:</span>
@@ -153,7 +153,7 @@ function Usuarios() {
               onChange={(event) => {
                 setTelefono(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el telefono" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese el telefono" aria-label="Telefono" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Experiencia:</span>
@@ -161,7 +161,7 @@ function Usuarios() {
               onChange={(event) => {
                 setExperiencia(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese la experiencia" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese la experiencia" aria-label="Experiencia" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Usuario:</span>
@@ -169,7 +169,7 @@ function Usuarios() {
               onChange={(event) => {
                 setUsuario(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese el usuario" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese el usuario" aria-label="Usuario" aria-describedby="basic-addon1" />
           </div>
           <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Contrasenia:</span>
@@ -177,7 +177,7 @@ function Usuarios() {
               onChange={(event) => {
                 setContrasenia(event.target.value);
               }}
-              className="form-control" placeholder="Ingrese la Contrasenia" aria-label="Position" aria-describedby="basic-addon1" />
+              className="form-control" placeholder="Ingrese la Contraseña" aria-label="Contrasenia" aria-describedby="basic-addon1" />
           </div>
         </div>
         <div className="card-footer text-muted">
