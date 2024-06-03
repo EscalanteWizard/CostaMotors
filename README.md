@@ -10,6 +10,18 @@ Enlace a los prototipos de Figma: https://www.figma.com/file/vE87OYbHnURVxfY4d9H
 
 Enlace del vídeo de YouTube de la primera etapa de prototipado: https://youtu.be/slEf61pl2qI
 
+
+Instalar el proyecto y dependencias:
+
+Clone el proyecto desde el repositorio de GitHub mencionado anteriormente mediante el comando "git clone" + url
+
+Ubíquese en el directorio del server y use el comando "npm install" para instalar todas las dependencias del proyecto backEnd.
+Ubíquese en el directorio del frontEnd y use el comando "npm install" para instalar todas las dependencias del proyecto frontEnd.
+
+Para que el proyecto funcione adecuadamente debe usar la base de datos MySQL, instale el producto y corra en su gestor el script que se proporciona en el archivo costamotors.sql adjunto en el proyecto.
+
+En el backEnd, en el archivo index.js, modifique la funcion db=mysql.createConnection de manera que los parametros user y password coincidan con el usuario y contraseña de su base de datos local.
+
 Para Iniciar la aplicación de FrontEnd colóquese en el directorio del frontEnd y utilice el comando "npm start", tomará unos minutos pero le desplegará la aplicación en su navegador predeterminado, se recomiendo el uso de Microsoft Edge.
 
 Para iniciar el servidor del backEnd colóquese en el directorio del server y utilice el comando "node index.js", si el ambiente está configurado correctamente aparecerá en su terminal un mensaje de que el servidor está escuchando en el puerto 3007.

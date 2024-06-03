@@ -93,6 +93,23 @@ app.put("/actualizarEmpleado", (req, res) => {
     });
 });
 
+//Metodo del backEnd para llamar al procedimiento almacenado para borrar un empleado de la tabla de empleados por medio del id
+app.delete("/eliminarEmpleado/:id", (req, res) => {
+    const {id}=req.params;
+
+    const sql = 'CALL eliminarEmpleado(?)';
+    const params = [id];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            console.error("Error al ejecutar el procedimiento almacenado:", err);
+            return res.status(500).send("Error al borrar la infomación el empleado");
+        } else {
+            res.send("Empleado eliminado con éxito!!");
+        }
+    });
+});
+
 //setear el servidor a escuchar en el puerto 3007
 app.listen(3007,()=>{
     console.log("Corriendo en el puerto 3007\n");

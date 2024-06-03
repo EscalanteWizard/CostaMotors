@@ -101,6 +101,20 @@ function App() {
     });
   }
 
+  // Metodo del frontEnd para enviar al backEnd una peticion para eliminar la información de un empleado en la base de datos por medio de su id
+  const eliminarEmpleado = (id) => {
+    if (window.confirm("¿Estás seguro de que deseas eliminar este empleado?")) {
+        Axios.delete(`http://localhost:3007/eliminarEmpleado/${id}`).then(() => {
+            getEmpleados();
+            alert("Empleado eliminado con éxito!");
+            limpiarCamposEmpleado();
+        }).catch((error) => {
+            console.error("Error al eliminar el empleado:", error);
+            alert("Error al eliminar el empleado");
+        });
+    }
+  }
+
   //Metodo del frontEnd para enviar al backEnd una peticion para consultar todos los empleados
   const getEmpleados = () => {
     Axios.get("http://localhost:3007/consultarEmpleados")
@@ -234,7 +248,7 @@ function App() {
                       {/** Boton para invocar la funcionalidad para eliminar */}
                       <button type="button" 
                         onClick={()=> {
-                            
+                          eliminarEmpleado(empleado.id);
                         }}
                       className="btn btn-danger">Eliminar</button>
 
