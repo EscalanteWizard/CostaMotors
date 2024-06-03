@@ -1,8 +1,14 @@
-/* App.css */
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.App-header {
+  background-color: #333; /* Fondo gris oscuro */
+  color: #fff; /* Letras blancas */
+  text-align: center; /* Centrando el texto */
+  padding: 1rem 0; /* Espaciado interno */
 }
 
 .datos {

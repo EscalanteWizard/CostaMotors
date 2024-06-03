@@ -130,9 +130,7 @@ function Usuarios() {
                 setNombre(event.target.value);
               }}
               className="form-control" placeholder="Ingrese un nombre" aria-label="Username" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Apellidos:</span>
+              <span className="input-group-text" id="basic-addon1">Apellidos:</span>
             <input type="text" value={apellidos}
               onChange={(event) => {
                 setApellidos(event.target.value);
@@ -146,16 +144,12 @@ function Usuarios() {
                 setCorreo(event.target.value);
               }}
               className="form-control" placeholder="Ingrese el correo" aria-label="Mail" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Telefono:</span>
             <input type="text" value={telefono}
               onChange={(event) => {
                 setTelefono(event.target.value);
               }}
               className="form-control" placeholder="Ingrese el telefono" aria-label="Telefono" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Experiencia:</span>
             <input type="number" value={experiencia}
               onChange={(event) => {
@@ -170,8 +164,6 @@ function Usuarios() {
                 setUsuario(event.target.value);
               }}
               className="form-control" placeholder="Ingrese el usuario" aria-label="Usuario" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
             <span className="input-group-text" id="basic-addon1">Contrasenia:</span>
             <input type="text" value={contrasenia}
               onChange={(event) => {

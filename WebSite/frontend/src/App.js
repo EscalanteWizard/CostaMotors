@@ -7,7 +7,9 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Costa Motors</h1>
+      <header className="App-header">
+        <h1>Costa Motors</h1>
+      </header>
       <nav>
         <ul>
           <li>

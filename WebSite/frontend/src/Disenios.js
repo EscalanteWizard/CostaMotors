@@ -1,24 +1,25 @@
-import './Usuarios.css';
 import React, { useState } from 'react';
 import Axios from "axios";
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Disenios.css';
 
 function Disenios() {
   const [id, setId] = useState();
   const [nombre, setNombre] = useState("");
-  const [transmision, setTransmision] = useState();
-  const [materialAsientos, setMaterialAsientos] = useState("");
-  const [motor, setMotor] = useState("");
-  const [vidrios, setVidrios] = useState();
-  const [espejos, setEspejos] = useState("");
-  const [sensoresDelanteros, setSensoresDelanteros] = useState("");
-  const [sensoresTraseros, setSensoresTraseros] = useState("");
-  const [sensoresLaterales, setSensoresLaterales] = useState("");
-  const [camara, setCamara] = useState("");
-  const [tableroMando, setTableroMando] = useState("");
-  const [impulso, setImpulso] = useState("");
-  const [tapizado, setTapizado] = useState("");
-  const [sistemaSonido, setSistemaSonido] = useState("");
+  const [transmision, setTransmision] = useState("Seleccione la transmisión");
+  const [materialAsientos, setMaterialAsientos] = useState("Seleccione el material de los asientos");
+  const [motor, setMotor] = useState("Seleccione el motor");
+  const [vidrios, setVidrios] = useState("Seleccione el tipo de vidrios");
+  const [espejos, setEspejos] = useState("Seleccione los espejos");
+  const [sensoresDelanteros, setSensoresDelanteros] = useState("Seleccione sensores delanteros");
+  const [sensoresTraseros, setSensoresTraseros] = useState("Seleccione sensores traseros");
+  const [sensoresLaterales, setSensoresLaterales] = useState("Seleccione sensores laterales");
+  const [camara, setCamara] = useState("Seleccione la cámara");
+  const [tableroMando, setTableroMando] = useState("Seleccione el tablero de mando");
+  const [impulso, setImpulso] = useState("Seleccione el tipo de combustible");
+  const [tapizado, setTapizado] = useState("Seleccione el tapizado");
+  const [sistemaSonido, setSistemaSonido] = useState("Seleccione el sistema de sonido");
 
   const [editar, setEditar] = useState(false);
   const [diseniosList, setDisenios] = useState([]);
@@ -45,24 +46,24 @@ function Disenios() {
   const limpiarCamposDisenio = () => {
     setId("");
     setNombre("");
-    setTransmision("");
-    setMaterialAsientos("");
-    setMotor("");
-    setVidrios("");
-    setEspejos("");
-    setSensoresDelanteros("");
-    setSensoresTraseros("");
-    setSensoresLaterales("");
-    setCamara("");
-    setTableroMando("");
-    setImpulso("");
-    setTapizado("");
-    setSistemaSonido("")
+    setTransmision("Seleccione la transmisión");
+    setMaterialAsientos("Seleccione el material de los asientos");
+    setMotor("Seleccione el motor");
+    setVidrios("Seleccione el tipo de vidrios");
+    setEspejos("Seleccione los espejos");
+    setSensoresDelanteros("Seleccione sensores delanteros");
+    setSensoresTraseros("Seleccione sensores traseros");
+    setSensoresLaterales("Seleccione sensores laterales");
+    setCamara("Seleccione la cámara");
+    setTableroMando("Seleccione el tablero de mando");
+    setImpulso("Seleccione el tipo de combustible");
+    setTapizado("Seleccione el tapizado");
+    setSistemaSonido("Seleccione el sistema de sonido");
     setEditar(false);
   };
 
   const addDisenio = () => {
-    if (!nombre || !transmision || !materialAsientos || !motor || !vidrios || !espejos || !sensoresDelanteros || !sensoresTraseros || !sensoresLaterales || !camara || !tableroMando || !impulso || !tapizado || !sistemaSonido) {
+    if (!nombre || transmision === "Seleccione la transmisión" || materialAsientos === "Seleccione el material de los asientos" || motor === "Seleccione el motor" || vidrios === "Seleccione el tipo de vidrios" || espejos === "Seleccione los espejos" || sensoresDelanteros === "Seleccione sensores delanteros" || sensoresTraseros === "Seleccione sensores traseros" || sensoresLaterales === "Seleccione sensores laterales" || camara === "Seleccione la cámara" || tableroMando === "Seleccione el tablero de mando" || impulso === "Seleccione el tipo de combustible" || tapizado === "Seleccione el tapizado" || sistemaSonido === "Seleccione el sistema de sonido") {
       alert("Todos los campos son obligatorios");
       getDisenios();
       return;
@@ -93,7 +94,7 @@ function Disenios() {
   };
 
   const upDateDisenio = () => {
-    if (!nombre || !transmision || !materialAsientos || !motor || !vidrios || !espejos || !sensoresDelanteros || !sensoresTraseros || !sensoresLaterales || !camara || !tableroMando || !impulso || !tapizado || !sistemaSonido) {
+    if (!nombre || transmision === "Seleccione la transmisión" || materialAsientos === "Seleccione el material de los asientos" || motor === "Seleccione el motor" || vidrios === "Seleccione el tipo de vidrios" || espejos === "Seleccione los espejos" || sensoresDelanteros === "Seleccione sensores delanteros" || sensoresTraseros === "Seleccione sensores traseros" || sensoresLaterales === "Seleccione sensores laterales" || camara === "Seleccione la cámara" || tableroMando === "Seleccione el tablero de mando" || impulso === "Seleccione el tipo de combustible" || tapizado === "Seleccione el tapizado" || sistemaSonido === "Seleccione el sistema de sonido") {
       alert("Todos los campos son obligatorios");
       getDisenios();
       return;
@@ -160,105 +161,119 @@ function Disenios() {
         </div>
         <div className="card-body">
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Nombre:</span>
-            <input type="text" value={nombre}
-              onChange={(event) => {
-                setNombre(event.target.value);
-              }}
-              className="form-control" placeholder="Ingrese un nombre" aria-label="Nombre de disenio" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Transmision:</span>
-            <input type="text" value={transmision}
-              onChange={(event) => {
-                setTransmision(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccione la transmision" aria-label="Transmision" aria-describedby="basic-addon1" />
-              <span className="input-group-text" id="basic-addon1">Motor:</span>
-            <input type="text" value={motor}
-              onChange={(event) => {
-                setMotor(event.target.value);
-              }}
-              className="form-control" placeholder="Ingrese el motor" aria-label="Motor" aria-describedby="basic-addon1" />
-              <span className="input-group-text" id="basic-addon1">Tipo de conbustible: </span>
-            <input type="text" value={impulso}
-              onChange={(event) => {
-                setImpulso(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccione el tipo de combustible" aria-label="Combustible" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Material de asientos:</span>
-            <input type="text" value={materialAsientos}
-              onChange={(event) => {
-                setMaterialAsientos(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccion el material de los Asientos" aria-label="Material asientos" aria-describedby="basic-addon1" />
-              <span className="input-group-text" id="basic-addon1">Tapizado:</span>
-            <input type="text" value={tapizado}
-              onChange={(event) => {
-                setTapizado(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccion el tapizado" aria-label="Tapizado" aria-describedby="basic-addon1" />
-          </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Vidrios:</span>
-              <input type="text" value={vidrios}
+            <div className="d-flex align-items-center">
+              <span className="me-2">Nombre:</span>
+              <input type="text" value={nombre}
                 onChange={(event) => {
-                  setVidrios(event.target.value);
+                  setNombre(event.target.value);
                 }}
-                className="form-control" placeholder="Seleccione el tipo de  vidrios" aria-label="Vidrios" aria-describedby="basic-addon1" />
-                <span className="input-group-text" id="basic-addon1">Espejos:</span>
-              <input type="text" value={espejos}
-                onChange={(event) => {
-                  setEspejos(event.target.value);
-                }}
-                className="form-control" placeholder="Seleccione los espejos" aria-label="Espejos" aria-describedby="basic-addon1" />
-                <span className="input-group-text" id="basic-addon1">Cámara: </span>
-            <input type="text" value={camara}
-              onChange={(event) => {
-                setCamara(event.target.value);
-              }}
-              className="form-control" placeholder="Desea colocar camara de retroceso o 360?" aria-label="Camara de retroceso" aria-describedby="basic-addon1" />
+                className="form-control" placeholder="Ingrese un nombre" />
+            </div>
           </div>
-          <div className="input-group mb-3">
-            
-            <span className="input-group-text" id="basic-addon1">Sensores delanteros</span>
-            <input type="text" value={sensoresDelanteros}
-              onChange={(event) => {
-                setSensoresDelanteros(event.target.value);
-              }}
-              className="form-control" placeholder="Desea colocar sensores delanteros?" aria-label="SensoresDelanteros" aria-describedby="basic-addon1" />
-            
-            <span className="input-group-text" id="basic-addon1">Sensores traseros</span>
-            <input type="text" value={sensoresTraseros}
-              onChange={(event) => {
-                setSensoresTraseros(event.target.value);
-              }}
-              className="form-control" placeholder="Desea colocar sensores traseros?" aria-label="SensoresTraseros" aria-describedby="basic-addon1" />
-
-            <span className="input-group-text" id="basic-addon1">Sensores laterales</span>
-            <input type="text" value={sensoresLaterales}
-              onChange={(event) => {
-                setSensoresLaterales(event.target.value);
-              }}
-              className="form-control" placeholder="Desea colocar sensores laterales?" aria-label="SensoresLaterales" aria-describedby="basic-addon1" />
+          <div className="row mb-3">
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Transmisión:</span>
+              <DropdownButton variant="secondary" title={transmision}>
+                <Dropdown.Item onClick={() => setTransmision("Automática")}>Automática</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTransmision("Manual")}>Manual</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Motor:</span>
+              <DropdownButton variant="secondary" title={motor}>
+                <Dropdown.Item onClick={() => setMotor("Motor 1")}>Motor 1</Dropdown.Item>
+                <Dropdown.Item onClick={() => setMotor("Motor 2")}>Motor 2</Dropdown.Item>
+                <Dropdown.Item onClick={() => setMotor("Motor 3")}>Motor 3</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Combustible:</span>
+              <DropdownButton variant="secondary" title={impulso}>
+                <Dropdown.Item onClick={() => setImpulso("Gasolina")}>Gasolina</Dropdown.Item>
+                <Dropdown.Item onClick={() => setImpulso("Eléctrico")}>Eléctrico</Dropdown.Item>
+                <Dropdown.Item onClick={() => setImpulso("Híbrido")}>Híbrido</Dropdown.Item>
+              </DropdownButton>
+            </div>
           </div>
-          <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Tablero de mando: </span>
-            <input type="text" value={tableroMando}
-              onChange={(event) => {
-                setTableroMando(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccione el tipo de tablero de mando" aria-label="Tablero de mando" aria-describedby="basic-addon1" />
-              <span className="input-group-text" id="basic-addon1">Sistema de sonido: </span>
-            <input type="text" value={sistemaSonido}
-              onChange={(event) => {
-                setSistemaSonido(event.target.value);
-              }}
-              className="form-control" placeholder="Seleccione el tipo de sistema de sonido" aria-label="Sistema de sonido" aria-describedby="basic-addon1" />
+          <div className="row mb-3">
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Material Asientos:</span>
+              <DropdownButton variant="secondary" title={materialAsientos}>
+                <Dropdown.Item onClick={() => setMaterialAsientos("Cuero")}>Cuero</Dropdown.Item>
+                <Dropdown.Item onClick={() => setMaterialAsientos("Tela")}>Tela</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Tapizado:</span>
+              <DropdownButton variant="secondary" title={tapizado}>
+                <Dropdown.Item onClick={() => setTapizado("Cuero")}>Cuero</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTapizado("Tela")}>Tela</Dropdown.Item>
+              </DropdownButton>
+            </div>
           </div>
+          <div className="row mb-3">
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Vidrios:</span>
+              <DropdownButton variant="secondary" title={vidrios}>
+                <Dropdown.Item onClick={() => setVidrios("Eléctricos")}>Eléctricos</Dropdown.Item>
+                <Dropdown.Item onClick={() => setVidrios("Manuales")}>Manuales</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Espejos:</span>
+              <DropdownButton variant="secondary" title={espejos}>
+                <Dropdown.Item onClick={() => setEspejos("Eléctricos")}>Eléctricos</Dropdown.Item>
+                <Dropdown.Item onClick={() => setEspejos("Manuales")}>Manuales</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Cámara:</span>
+              <DropdownButton variant="secondary" title={camara}>
+                <Dropdown.Item onClick={() => setCamara("Retroceso")}>Retroceso</Dropdown.Item>
+                <Dropdown.Item onClick={() => setCamara("360 grados")}>360 grados</Dropdown.Item>
+              </DropdownButton>
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Sensores Delanteros:</span>
+              <DropdownButton variant="secondary" title={sensoresDelanteros}>
+                <Dropdown.Item onClick={() => setSensoresDelanteros("Sí")}>Sí</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSensoresDelanteros("No")}>No</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Sensores Traseros:</span>
+              <DropdownButton variant="secondary" title={sensoresTraseros}>
+                <Dropdown.Item onClick={() => setSensoresTraseros("Sí")}>Sí</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSensoresTraseros("No")}>No</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Sensores Laterales:</span>
+              <DropdownButton variant="secondary" title={sensoresLaterales}>
+                <Dropdown.Item onClick={() => setSensoresLaterales("Sí")}>Sí</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSensoresLaterales("No")}>No</Dropdown.Item>
+              </DropdownButton>
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Tablero de Mando:</span>
+              <DropdownButton variant="secondary" title={tableroMando}>
+                <Dropdown.Item onClick={() => setTableroMando("Analógico")}>Analógico</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTableroMando("Digital")}>Digital</Dropdown.Item>
+              </DropdownButton>
+            </div>
+            <div className="col d-flex align-items-center">
+              <span className="me-2">Sistema de Sonido:</span>
+              <DropdownButton variant="secondary" title={sistemaSonido}>
+                <Dropdown.Item onClick={() => setSistemaSonido("Básico")}>Básico</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSistemaSonido("Premium")}>Premium</Dropdown.Item>
+              </DropdownButton>
+            </div>
         </div>
+    </div>
         <div className="card-footer text-muted">
           {editar ?
             <div>
@@ -269,8 +284,10 @@ function Disenios() {
           }
         </div>
       </div>
-      <table className="table table-striped">
-        <thead>
+
+      {/* Tabla */}
+      <table className="table table-striped table-sm">
+      <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
@@ -281,7 +298,7 @@ function Disenios() {
             <th scope="col">Tapizado</th>
             <th scope="col">Vidrios</th>
             <th scope="col">Espejos</th>
-            <th scope="col">Camara</th>
+            <th scope="col">Cámara</th>
             <th scope="col">Sensores delanteros</th>
             <th scope="col">Sensores traseros</th>
             <th scope="col">Sensores laterales</th>
