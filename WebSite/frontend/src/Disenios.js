@@ -176,22 +176,25 @@ function Disenios() {
               <DropdownButton variant="secondary" title={transmision}>
                 <Dropdown.Item onClick={() => setTransmision("Automática")}>Automática</Dropdown.Item>
                 <Dropdown.Item onClick={() => setTransmision("Manual")}>Manual</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTransmision("Dual")}>Dual</Dropdown.Item>
               </DropdownButton>
             </div>
             <div className="col d-flex align-items-center">
               <span className="me-2">Motor:</span>
               <DropdownButton variant="secondary" title={motor}>
-                <Dropdown.Item onClick={() => setMotor("Motor 1")}>Motor 1</Dropdown.Item>
-                <Dropdown.Item onClick={() => setMotor("Motor 2")}>Motor 2</Dropdown.Item>
-                <Dropdown.Item onClick={() => setMotor("Motor 3")}>Motor 3</Dropdown.Item>
+                <Dropdown.Item onClick={() => setMotor("Sencillo")}>Sencillo</Dropdown.Item>
+                <Dropdown.Item onClick={() => setMotor("4x4")}>4x4</Dropdown.Item>
               </DropdownButton>
             </div>
             <div className="col d-flex align-items-center">
               <span className="me-2">Combustible:</span>
               <DropdownButton variant="secondary" title={impulso}>
                 <Dropdown.Item onClick={() => setImpulso("Gasolina")}>Gasolina</Dropdown.Item>
+                <Dropdown.Item onClick={() => setImpulso("Diesel")}>Diesel</Dropdown.Item>
+                <Dropdown.Item onClick={() => setImpulso("Gas Licuado")}>Gas Licuado</Dropdown.Item>
                 <Dropdown.Item onClick={() => setImpulso("Eléctrico")}>Eléctrico</Dropdown.Item>
                 <Dropdown.Item onClick={() => setImpulso("Híbrido")}>Híbrido</Dropdown.Item>
+                <Dropdown.Item onClick={() => setImpulso("Hídrogeno")}>Hídrógeno</Dropdown.Item>
               </DropdownButton>
             </div>
           </div>
@@ -207,7 +210,7 @@ function Disenios() {
               <span className="me-2">Tapizado:</span>
               <DropdownButton variant="secondary" title={tapizado}>
                 <Dropdown.Item onClick={() => setTapizado("Cuero")}>Cuero</Dropdown.Item>
-                <Dropdown.Item onClick={() => setTapizado("Tela")}>Tela</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTapizado("Plastico")}>Plastico</Dropdown.Item>
               </DropdownButton>
             </div>
           </div>
@@ -262,17 +265,18 @@ function Disenios() {
               <span className="me-2">Tablero de Mando:</span>
               <DropdownButton variant="secondary" title={tableroMando}>
                 <Dropdown.Item onClick={() => setTableroMando("Analógico")}>Analógico</Dropdown.Item>
-                <Dropdown.Item onClick={() => setTableroMando("Digital")}>Digital</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTableroMando("Digital Táctil")}>Digital Táctil</Dropdown.Item>
+                <Dropdown.Item onClick={() => setTableroMando("Doble")}>Doble</Dropdown.Item>
               </DropdownButton>
             </div>
             <div className="col d-flex align-items-center">
               <span className="me-2">Sistema de Sonido:</span>
               <DropdownButton variant="secondary" title={sistemaSonido}>
                 <Dropdown.Item onClick={() => setSistemaSonido("Básico")}>Básico</Dropdown.Item>
-                <Dropdown.Item onClick={() => setSistemaSonido("Premium")}>Premium</Dropdown.Item>
+                <Dropdown.Item onClick={() => setSistemaSonido("Stereo 7.1")}>Stereo 7.1</Dropdown.Item>
               </DropdownButton>
             </div>
-        </div>
+          </div>
     </div>
         <div className="card-footer text-muted">
           {editar ?
