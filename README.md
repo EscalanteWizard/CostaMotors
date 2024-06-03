@@ -10,4 +10,6 @@ Enlace a los prototipos de Figma: https://www.figma.com/file/vE87OYbHnURVxfY4d9H
 
 Enlace del vídeo de YouTube de la primera etapa de prototipado: https://youtu.be/slEf61pl2qI
 
-Enlaces de los Diagramas UML del proyecto:
+Para Iniciar la aplicación de FrontEnd colóquese en el directorio del frontEnd y utilice el comando "npm start", tomará unos minutos pero le desplegará la aplicación en su navegador predeterminado, se recomiendo el uso de Microsoft Edge.
+
+Para iniciar el servidor del backEnd colóquese en el directorio del server y utilice el comando "node index.js", si el ambiente está configurado correctamente aparecerá en su terminal un mensaje de que el servidor está escuchando en el puerto 3007.
