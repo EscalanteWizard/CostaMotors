@@ -39,14 +39,14 @@ app.get('/testConnection', (req, res) => {
 
 //Metodo para llamar al procedimiento almacenado para agregar un nuevo empleado
 app.post("/saveEmpleado", (req, res) => {
-    const { nombre, edad, pais, cargo, experiencia } = req.body;
+    const { nombre, apellidos, correo, telefono, experiencia, usuario, contrasenia } = req.body;
 
-    if (!nombre || !edad || !pais || !cargo || !experiencia) {
+    if (!nombre || !apellidos || !correo || !telefono || !experiencia || !usuario || !contrasenia) {
         return res.status(400).send("Todos los campos son obligatorios");
     }
 
-    const sql = 'CALL insertarEmpleado(?, ?, ?, ?, ?)';
-    const params = [nombre, edad, pais, cargo, experiencia];
+    const sql = 'CALL insertarEmpleado(?, ?, ?, ?, ?, ?, ?)';
+    const params = [nombre, apellidos, correo, telefono, experiencia, usuario, contrasenia];
 
     db.query(sql, params, (err, result) => {
         if (err) {
@@ -74,14 +74,14 @@ app.get("/consultarEmpleados",(req,res)=>{
 
 //Metodo para llamar al procedimiento almacenado para actualizar la infomación de un empleado
 app.put("/actualizarEmpleado", (req, res) => {
-    const { id, nombre, edad, pais, cargo, experiencia } = req.body;
+    const { id, nombre, apellidos, correo, telefono, experiencia, usuario, contrasenia } = req.body;
 
-    if (!id || !nombre || !edad || !pais || !cargo || !experiencia) {
+    if (!id || !nombre || !apellidos || !correo || !telefono || !experiencia || !usuario || !contrasenia) {
         return res.status(400).send("Todos los campos son obligatorios");
     }
 
-    const sql = 'CALL actualizarEmpleado(?, ?, ?, ?, ?, ?)';
-    const params = [id, nombre, edad, pais, cargo, experiencia];
+    const sql = 'CALL actualizarEmpleado(?, ?, ?, ?, ?, ?, ?, ?)';
+    const params = [id, nombre, apellidos, correo, telefono, experiencia, usuario, contrasenia];
 
     db.query(sql, params, (err, result) => {
         if (err) {

@@ -9,10 +9,12 @@ function App() {
   //Constantes para manejar los estados de los input en el formulario
   const [id,setId] = useState();
   const [nombre,setNombre] = useState("");
-  const [edad,setEdad] = useState();
-  const [pais,setPais] = useState("");
-  const [cargo,setCargo] = useState("");
+  const [apellidos,setApellidos] = useState();
+  const [correo,setCorreo] = useState("");
+  const [telefono,setTelefono] = useState("");
   const [experiencia,setExperiencia] = useState();
+  const [usuario,setUsuario] = useState("");
+  const [contrasenia,setContrasenia]=useState("");
 
   //Constante para manejar los estados cuando se realice una edicion de los atributos del empleado
   const [editar,setEditar] = useState(false);
@@ -26,10 +28,12 @@ function App() {
 
     setId(empleado.id);
     setNombre(empleado.nombre);
-    setEdad(empleado.edad);
-    setPais(empleado.pais);
-    setCargo(empleado.cargo);
+    setApellidos(empleado.apellidos);
+    setCorreo(empleado.correo);
+    setTelefono(empleado.telefono);
     setExperiencia(empleado.experiencia);
+    setUsuario(empleado.usuario);
+    setContrasenia(empleado.contrasenia);
   }
 
   /** Funcion para testear que la conexion con la base de datos se haya realizado con exito */
@@ -45,27 +49,32 @@ function App() {
   const limpiarCamposEmpleado = ()=>{
     setId("");
     setNombre("");
-    setEdad("");
-    setPais("");
-    setCargo("");
+    setApellidos("");
+    setCorreo("");
+    setTelefono("");
     setExperiencia("");
+    setUsuario("");
+    setContrasenia("");
+
     setEditar(false);
   }
 
   //Metodo del frontEnd para enviar al backEnd una peticion para guardar un nuevo empleado en la base de datos
   const addEmpleado = ()=>{
     // Verificar si algún campo está vacío
-    if (!nombre || !edad || !pais || !cargo || !experiencia) {
+    if (!nombre || !apellidos || !correo || !telefono || !experiencia || !usuario || !contrasenia) {
       alert("Todos los campos son obligatorios");
       getEmpleados();
       return; // Salir de la función si algún campo está vacío
   }
     Axios.post("http://localhost:3007/saveEmpleado",{
       nombre:nombre,
-      edad:edad,
-      pais:pais,
-      cargo:cargo,
-      experiencia:experiencia
+      apellidos:apellidos,
+      correo:correo,
+      telefono:telefono,
+      experiencia:experiencia,
+      usuario:usuario,
+      contrasenia:contrasenia
     }).then(()=>{
       limpiarCamposEmpleado();
       getEmpleados();
@@ -79,7 +88,7 @@ function App() {
   //Metodo del frontEnd para enviar al backEnd una peticion para actualizar la información de un empleado en la base de datos
   const updateEmpleado = ()=>{
     // Verificar si algún campo está vacío
-    if (!id || !nombre || !edad || !pais || !cargo || !experiencia) {
+    if (!id || !nombre || !apellidos || !correo || !telefono || !experiencia || !usuario || !contrasenia) {
       alert("Todos los campos son obligatorios");
       getEmpleados();
       return; // Salir de la función si algún campo está vacío
@@ -87,10 +96,12 @@ function App() {
     Axios.put("http://localhost:3007/actualizarEmpleado",{
       id:id,
       nombre:nombre,
-      edad:edad,
-      pais:pais,
-      cargo:cargo,
-      experiencia:experiencia
+      apellidos:apellidos,
+      correo:correo,
+      telefono:telefono,
+      experiencia:experiencia,
+      usuario:usuario,
+      contrasenia:contrasenia
     }).then(()=>{
       getEmpleados();
       alert("Empleado actualizado con éxito!");
@@ -125,9 +136,9 @@ function App() {
         } else {
           alert("No se encontraron empleados.");
         }
-      }).catch((error) => {
+      }).catch(function(error) {
         console.error("Error al recuperar la lista de empleados: ", error);
-        alert("Error al recuperar la lista de empleados");
+        alert(JSON.parse(JSON.stringify(error)).message==="Network Error"?"Intente más tarde":JSON.stringify(error));
       });
   };
 
@@ -153,36 +164,36 @@ function App() {
           </div>
 
           {/**Input group es un elemento de bootstrap para gestionar elementos para ingresar datos 
-           * En este se muestran los elementos para ingresar a edad del empleado*/}
+           * En este se muestran los elementos para ingresar a apellidos del empleado*/}
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Edad:</span>
-            <input type="number" value={edad} 
+            <span className="input-group-text" id="basic-addon1">Apellidos:</span>
+            <input type="text" value={apellidos} 
               onChange={(event)=>{
-              setEdad(event.target.value);
+              setApellidos(event.target.value);
             }}
-            className="form-control" placeholder="Ingrese la edad" aria-label="Age" aria-describedby="basic-addon1"/>
+            className="form-control" placeholder="Ingrese la apellidos" aria-label="Age" aria-describedby="basic-addon1"/>
           </div>
 
           {/**Input group es un elemento de bootstrap para gestionar elementos para ingresar datos 
            * En este se muestran los elementos para ingresar el país del empleado*/}
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">País:</span>
-            <input type="text" value={pais} 
+            <span className="input-group-text" id="basic-addon1">Correo:</span>
+            <input type="text" value={correo} 
               onChange={(event)=>{
-              setPais(event.target.value);
+              setCorreo(event.target.value);
             }}
-            className="form-control" placeholder="Ingrese el país" aria-label="Country" aria-describedby="basic-addon1"/>
+            className="form-control" placeholder="Ingrese el correo" aria-label="Country" aria-describedby="basic-addon1"/>
           </div>
           
           {/**Input group es un elemento de bootstrap para gestionar elementos para ingresar datos 
-           * En este se muestran los elementos para ingresar el cargo del empleado*/}
+           * En este se muestran los elementos para ingresar el telefono del empleado*/}
           <div className="input-group mb-3">
-            <span className="input-group-text" id="basic-addon1">Cargo:</span>
-            <input type="text" value={cargo}
+            <span className="input-group-text" id="basic-addon1">Telefono:</span>
+            <input type="text" value={telefono}
               onChange={(event)=>{
-              setCargo(event.target.value);
+              setTelefono(event.target.value);
             }}
-            className="form-control" placeholder="Ingrese el cargo" aria-label="Position" aria-describedby="basic-addon1"/>
+            className="form-control" placeholder="Ingrese el telefono" aria-label="Position" aria-describedby="basic-addon1"/>
           </div>
           
           {/**Input group es un elemento de bootstrap para gestionar elementos para ingresar datos 
@@ -195,6 +206,29 @@ function App() {
             }}
             className="form-control" placeholder="Ingrese la experiencia" aria-label="Position" aria-describedby="basic-addon1"/>
           </div>
+
+          {/**Input group es un elemento de bootstrap para gestionar elementos para ingresar datos 
+           * En este se muestran los elementos para ingresar la experiencia del empleado*/}
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">Usuario:</span>
+            <input type="text" value={usuario}
+              onChange={(event)=>{
+              setUsuario(event.target.value);
+            }}
+            className="form-control" placeholder="Ingrese el usuario" aria-label="Position" aria-describedby="basic-addon1"/>
+          </div>
+
+          {/**Input group es un elemento de bootstrap para gestionar elementos para ingresar datos 
+           * En este se muestran los elementos para ingresar la contrasenia del empleado*/}
+          <div className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">Contrasenia:</span>
+            <input type="text" value={contrasenia}
+              onChange={(event)=>{
+              setContrasenia(event.target.value);
+            }}
+            className="form-control" placeholder="Ingrese la Contrasenia" aria-label="Position" aria-describedby="basic-addon1"/>
+          </div>
+
         </div>
 
         <div className="card-footer text-muted">
@@ -217,10 +251,12 @@ function App() {
           <tr>
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Edad</th>
-            <th scope="col">Pais</th>
-            <th scope="col">Cargo</th>
+            <th scope="col">apellidos</th>
+            <th scope="col">correo</th>
+            <th scope="col">telefono</th>
             <th scope="col">Experiencia</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Contrasenia</th>
             {/** Uno extra para colocar los botones de acciones */}
             <th scope="col">Acciones</th>  
           </tr>
@@ -231,10 +267,12 @@ function App() {
             return <tr key={empleado.id}>
                     <th>{empleado.id}</th>
                     <td>{empleado.nombre}</td>
-                    <td>{empleado.edad}</td>
-                    <td>{empleado.pais}</td> 
-                    <td>{empleado.cargo}</td> 
+                    <td>{empleado.apellidos}</td>
+                    <td>{empleado.correo}</td> 
+                    <td>{empleado.telefono}</td> 
                     <td>{empleado.experiencia}</td> 
+                    <td>{empleado.usuario}</td> 
+                    <td>{empleado.contrasenia}</td> 
                     <td>
                     <div className="btn-group" role="group" aria-label="Basic example">
 
