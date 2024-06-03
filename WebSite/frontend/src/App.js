@@ -20,7 +20,7 @@ function App() {
   //Constante para guardar la lista de los empleados al realizar la consulta de la tabla de empleados de la bd
   const [empleadosList,setEmpleados]=useState([]);
 
-  //Funcion para editar los atributos del empleado
+  //Constantes para manejar los estados del empleado mientras es editado
   const editarEmpleado = (empleado)=>{
     setEditar(true);
 
@@ -30,6 +30,26 @@ function App() {
     setPais(empleado.pais);
     setCargo(empleado.cargo);
     setExperiencia(empleado.experiencia);
+  }
+
+  /** Funcion para testear que la conexion con la base de datos se haya realizado con exito */
+  const testConexion = ()=>{
+    Axios.get("http://localhost:3007/testConnection",{
+  
+    }).then(()=>{
+      alert("Conexion funcionando adecuadamente");
+    });
+  }
+
+  /** Funcion para cancelar el proceso de edicion de un empleado */
+  const limpiarCamposEmpleado = ()=>{
+    setId("");
+    setNombre("");
+    setEdad("");
+    setPais("");
+    setCargo("");
+    setExperiencia("");
+    setEditar(false);
   }
 
   //Metodo del frontEnd para enviar al backEnd una peticion para guardar un nuevo empleado en la base de datos
@@ -47,6 +67,7 @@ function App() {
       cargo:cargo,
       experiencia:experiencia
     }).then(()=>{
+      limpiarCamposEmpleado();
       getEmpleados();
       alert("Empleado registrado con éxito!");
     }).catch((error) => {
@@ -73,6 +94,7 @@ function App() {
     }).then(()=>{
       getEmpleados();
       alert("Empleado actualizado con éxito!");
+      limpiarCamposEmpleado();
     }).catch((error) => {
       console.error("Error al actualizar el empleado:", error);
       alert("Error al actualizar el empleado");
@@ -94,15 +116,6 @@ function App() {
         alert("Error al recuperar la lista de empleados");
       });
   };
-
-  /** Funcion para testear que la conexion con la base de datos se haya realizado con exito */
-  const testConexion = ()=>{
-    Axios.get("http://localhost:3007/testConnection",{
-  
-    }).then(()=>{
-      alert("Conexion funcionando adecuadamente");
-    });
-  }
 
   //Renderizado de los componentes graficos de la aplicacion
   return (
@@ -176,7 +189,7 @@ function App() {
             editar?
               <div>
                 <button className='btn btn-warning m-2' onClick={updateEmpleado}>Actualizar</button> {/**Boton para registrar los cambios al editar*/}
-                <button className='btn btn-danger m-2' onClick={addEmpleado}>Cancelar</button> {/**Boton para registrar los cambios al editar*/}
+                <button className='btn btn-danger m-2' onClick={limpiarCamposEmpleado}>Cancelar</button> {/**Boton para registrar los cambios al editar*/}
               </div>
             :<button className='btn btn-success' onClick={addEmpleado}>Registrar</button> //Boton para guar registrar en caso que no se esté editando
           }
