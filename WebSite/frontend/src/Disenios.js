@@ -3,6 +3,8 @@ import Axios from "axios";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Disenios.css';
+import Memento from './Memento';
+import CareTaker from './CareTaker';
 
 function Disenios() {
   const [id, setId] = useState();
@@ -20,6 +22,32 @@ function Disenios() {
   const [impulso, setImpulso] = useState("Seleccione el tipo de combustible");
   const [tapizado, setTapizado] = useState("Seleccione el tapizado");
   const [sistemaSonido, setSistemaSonido] = useState("Seleccione el sistema de sonido");
+
+  //Memento careTaker
+  const [careTaker] = useState(new CareTaker());
+
+  //Crear el estado memento
+  const createMemento = () => {
+    const state = {
+      nombre,
+      transmision,
+      materialAsientos,
+      motor,
+      vidrios,
+      espejos,
+      sensoresDelanteros,
+      sensoresTraseros,
+      sensoresLaterales,
+      camara,
+      tableroMando,
+      impulso,
+      tapizado,
+      sistemaSonido,
+    };
+    const memento = new Memento(state);
+    careTaker.addMemento(memento);
+  };
+
 
   const [editar, setEditar] = useState(false);
   const [diseniosList, setDisenios] = useState([]);
@@ -60,6 +88,24 @@ function Disenios() {
     setTapizado("Seleccione el tapizado");
     setSistemaSonido("Seleccione el sistema de sonido");
     setEditar(false);
+
+    const newState = careTaker.undo(); // Obtener el estado actual después de limpiar
+    if (newState) {
+      setNombre(newState.nombre);
+      setTransmision(newState.transmision);
+      setMaterialAsientos(newState.materialAsientos);
+      setMotor(newState.motor);
+      setVidrios(newState.vidrios);
+      setEspejos(newState.espejos);
+      setSensoresDelanteros(newState.sensoresDelanteros);
+      setSensoresTraseros(newState.sensoresTraseros);
+      setSensoresLaterales(newState.sensoresLaterales);
+      setCamara(newState.camara);
+      setTableroMando(newState.tableroMando);
+      setImpulso(newState.impulso);
+      setTapizado(newState.tapizado);
+      setSistemaSonido(newState.sistemaSonido);
+    }
   };
 
   const addDisenio = () => {
@@ -84,6 +130,7 @@ function Disenios() {
       tapizado: tapizado,
       sistemaSonido: sistemaSonido
     }).then(() => {
+      createMemento();
       limpiarCamposDisenio();
       getDisenios();
       alert("Diseño registrado con éxito!");
@@ -116,9 +163,10 @@ function Disenios() {
       tapizado: tapizado,
       sistemaSonido: sistemaSonido
     }).then(() => {
+      createMemento();
+      limpiarCamposDisenio();
       getDisenios();
       alert("Diseño actualizado con éxito!");
-      limpiarCamposDisenio();
     }).catch((error) => {
       console.error("Error al actualizar el disenio:", error);
       alert("Error al actualizar el disenio");
@@ -279,6 +327,14 @@ function Disenios() {
           </div>
     </div>
         <div className="card-footer text-muted">
+        {/** Boton para des hacer un cambio en el memento */}
+        <button className="btn btn-secondary m-2" onClick={() => careTaker.undo()}>
+          Deshacer
+        </button>
+        {/** Boton para re hacer un cambio en el memento */}
+        <button className="btn btn-secondary m-2" onClick={() => careTaker.redo()}>
+          Rehacer
+        </button>
           {editar ?
             <div>
               <button className='btn btn-warning m-2' onClick={upDateDisenio}>Actualizar</button>
